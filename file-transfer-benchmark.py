@@ -7,7 +7,7 @@ from pathlib import Path
 NUM_FILES = 500
 FILE_SIZE_KB = 1
 SOURCE_DIR = Path("./")
-NAS_TARGET_DIR = Path("/mnt/storage")
+FTP_TARGET_DIR = Path("/mnt/storage")
 
 
 def create_test_files():
@@ -21,15 +21,15 @@ def create_test_files():
 
 
 def transfer_files():
-    print(f"Transferring {NUM_FILES} files to NAS at: {NAS_TARGET_DIR}")
-    if not NAS_TARGET_DIR.exists():
+    print(f"Transferring {NUM_FILES} files to FTP at: {FTP_TARGET_DIR}")
+    if not FTP_TARGET_DIR.exists():
         print(f"Error: NAS target path {NAS_TARGET_DIR} does not exist.")
         return
 
     #fair warning, there's nothing here to prevent this process overwriting your existing files, be careful
     start_time = time.time()
     for file_path in SOURCE_DIR.iterdir():
-        shutil.copy2(file_path, NAS_TARGET_DIR)
+        shutil.copy2(file_path, FTP_TARGET_DIR)
     end_time = time.time()
 
     elapsed = end_time - start_time
